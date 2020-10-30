@@ -1,11 +1,11 @@
 ﻿@page "/counter"
 
 <h1>Counter</h1>
-
+<FormTest Message="Test" />
 <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
-<button class="btn" @onclick="DecrementCount">Click me</button>
+<fast-button @onclick="IncrementCount">Add</fast-button>
+<fast-button @onclick="DecrementCount">Rest</fast-button>
 
 @code {
     private int currentCount = 0;

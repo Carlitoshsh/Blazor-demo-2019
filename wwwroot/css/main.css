@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import "reset.css";
+
+*,
+body {
+  font-family: "Inter", Geneva, Verdana, sans-serif;
+}

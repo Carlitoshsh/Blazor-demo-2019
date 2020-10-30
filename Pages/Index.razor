@@ -1,7 +1,18 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+<fast-card>
+  <fast-text-field placeholder="name" value="@test"></fast-text-field>
+  <h2>Hello @dear </h2>
+  <fast-button appearance="accent" @onclick="ChangeValue">Click Me</fast-button>
+</fast-card>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+  string test = "Prueba";
+  string dear;
+  private void ChangeValue()
+  {
+    
+  }
+}
