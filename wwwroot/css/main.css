@@ -1,7 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import "variables.css";
 @import "reset.css";
-
-*,
-body {
-  font-family: "Inter", Geneva, Verdana, sans-serif;
-}
+@import "font.css";
+@import "blazor.css";
+@import "layout/grid.css";
+@import "components/index.css";

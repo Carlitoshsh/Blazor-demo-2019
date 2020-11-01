@@ -1,29 +1,24 @@
-﻿<fast-button @onclick="ToggleNavMenu">Menu</fast-button>
+﻿<button id="main-button-menu" @onclick="ToggleNavMenu">MENU</button>
 
-<div hidden="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <fast-menu>
+<div id="myNav" class="overlay @NavMenuCssClass">
+    <a class="closebtn" @onclick="ToggleNavMenu">&times;</a>
+    <menu @onclick="ToggleNavMenu">
         <NavLink href="counter">
-            <fast-anchor>
-                Counter
-            </fast-anchor>
+            Counter
         </NavLink>
         <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-            <fast-anchor>
-                Principal
-            </fast-anchor>
+            Principal
         </NavLink>
         <NavLink class="nav-link" href="fetchdata">
-            <fast-anchor>
-                Tabla
-            </fast-anchor>
+            Tabla
         </NavLink>
-    </fast-menu>
+    </menu>
 </div>
 
 @code {
     private bool collapseNavMenu = true;
 
-    private bool NavMenuCssClass => collapseNavMenu ? false : true;
+    private string NavMenuCssClass => collapseNavMenu ? "hide" : "show";
 
     private void ToggleNavMenu()
     {

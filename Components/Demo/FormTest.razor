@@ -1,12 +1,14 @@
 <h3>Hola @message</h3>
+<h3>Hola Camila</h3>
 
 @code {
     [Parameter]
-    public string Message {get; set;}
+    public string Message { get; set; }
 
     string message = "";
 
-    protected override async Task OnInitializedAsync(){
+    protected override async Task OnInitializedAsync()
+    {
         message = Message;
     }
 }

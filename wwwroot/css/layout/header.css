@@ -1,0 +1,21 @@
+header {
+  background-color: var(--main-bg-color);
+  padding: 10px 20px;
+  display: flex;
+}
+
+content {
+  display: flex;
+  align-items: center;
+}
+
+#main-button-menu {
+  border: 2px solid white;
+  color: white;
+  padding: 15px;
+}
+
+#main-button-menu:hover {
+  background-color: white;
+  color: var(--main-bg-color);
+}

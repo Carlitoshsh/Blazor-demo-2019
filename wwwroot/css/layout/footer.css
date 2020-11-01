@@ -1,0 +1,5 @@
+footer {
+  border-top: 2px solid var(--main-bg-color);
+  color: var(--main-bg-color);
+  padding: 10px 20px;
+}
