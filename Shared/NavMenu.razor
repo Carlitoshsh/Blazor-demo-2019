@@ -1,4 +1,7 @@
-﻿<button id="main-button-menu" @onclick="ToggleNavMenu">MENU</button>
+﻿<div class="wrapper content">
+    <span class="brand">AWSMSite</span>
+    <button id="main-button-menu" @onclick="ToggleNavMenu">MENU</button>
+</div>
 
 <div id="myNav" class="overlay @NavMenuCssClass">
     <a class="closebtn" @onclick="ToggleNavMenu">&times;</a>
@@ -10,7 +13,7 @@
             Principal
         </NavLink>
         <NavLink class="nav-link" href="fetchdata">
-            Tabla
+            Data fetched
         </NavLink>
     </menu>
 </div>
