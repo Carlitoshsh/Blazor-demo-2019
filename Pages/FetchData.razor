@@ -7,6 +7,20 @@
 
 <p>This component demonstrates fetching data from a service.</p>
 
+@if (storages == null)
+{
+    <p><em>Loading...</em></p>
+
+}
+else
+{
+    @foreach (var storage in storages)
+    {
+        <p>@storage.LastUpdate</p>
+        <p>@storage.PartialQuantity</p>
+    }
+}
+
 @if (forecasts == null)
 {
     <p><em>Loading...</em></p>
@@ -38,9 +52,11 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
+    private List<BlazorTest.Entities.Storage> storages;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        storages = await ForecastService.TestConnection();
     }
 }
