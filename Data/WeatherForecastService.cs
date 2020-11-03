@@ -29,6 +29,20 @@ namespace BlazorTest.Data
             }).ToArray());
         }
 
+        public async Task<int> AgregarStorage()
+        {
+            var affectedRows = await Query<Storage>("INSERT INTO Storage (Id, LastUpdate, PartialQuantity) Values (@Id, @LastUpdate, @PartialQuantity);",
+                new
+                {
+                    Id = "12",
+                    LastUpdate = DateTime.Now,
+                    PartialQuantity = 23
+                }
+            );
+
+            return affectedRows.Count;
+        }
+
         public async Task<List<Storage>> TestConnection()
         {
             return await Query<Storage>("select * from Storage");

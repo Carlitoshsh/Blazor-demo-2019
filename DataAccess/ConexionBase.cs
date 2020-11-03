@@ -75,11 +75,19 @@ namespace BlazorTest.DataAccess
             }
         }
 
-        protected async Task<List<T>> Query<T>(string sql, object parameters = null)
+        protected async Task<List<T>> QueryProcedure<T>(string sql, object parameters = null)
         {
             using (IDbConnection connection = Connection)
             {
                 return (await connection.QueryAsync<T>(sql, parameters, commandType: CommandType.StoredProcedure)).ToList();
+            }
+        }
+
+        protected async Task<List<T>> Query<T>(string sql, object parameters = null)
+        {
+            using (IDbConnection connection = Connection)
+            {
+                return (await connection.QueryAsync<T>(sql, parameters)).ToList();
             }
         }
 

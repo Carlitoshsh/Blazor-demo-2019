@@ -6,11 +6,11 @@
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
-
+<button @onclick="CreateStorage">Add Storage</button>
+<p>@afectedRows</p>
 @if (storages == null)
 {
     <p><em>Loading...</em></p>
-
 }
 else
 {
@@ -53,10 +53,17 @@ else
 @code {
     private WeatherForecast[] forecasts;
     private List<BlazorTest.Entities.Storage> storages;
+    private string afectedRows;
 
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
         storages = await ForecastService.TestConnection();
+    }
+
+    public async Task CreateStorage()
+    {
+       int afectedRowsProcess = await ForecastService.AgregarStorage();
+       afectedRows = $"Affected Rows: {afectedRowsProcess}";
     }
 }
