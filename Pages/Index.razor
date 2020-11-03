@@ -1,18 +1,7 @@
 ﻿@page "/"
 
-<div>
-  <input type="text" name="text" @bind-value='@test'>
-  <h2>Hello @dear </h2>
-  <button appearance="accent" @onclick="ChangeValue">Click Me</button>
-</div>
-
+<CreateProductComponent />
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code {
-  string test = "Prueba";
-  string dear;
-  private void ChangeValue()
-  {
-    dear = test;
-  }
 }

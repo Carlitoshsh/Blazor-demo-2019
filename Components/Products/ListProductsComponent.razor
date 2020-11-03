@@ -1,0 +1,56 @@
+@using Entities
+@inject B_Product ProductService
+@inject B_Category CategoryService
+
+
+<select name="" id="" @onchange="CategoryChanged">
+    <option disabled>Seleccione una opcion</option>
+    @foreach (var category in categories)
+    {
+        <option value="@category.Id">@category.Name</option>
+    }
+</select>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name. (C)</th>
+            <th>Category (F)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in tempProducts)
+        {
+            <tr>
+                <td>@product.Id</td>
+                <td>@product.Name</td>
+                <td>@product.CategoryId</td>
+                <td>
+                    <a href="update/@product.Id">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@code {
+    List<Product> products = new List<Product>();
+    List<Product> tempProducts = new List<Product>();
+    List<Category> categories = new List<Category>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        products = await ProductService.ProductList();
+        tempProducts = products;
+        categories = await CategoryService.CategoryList();
+    }
+
+    private void CategoryChanged(ChangeEventArgs e)
+    {
+        tempProducts = products.Where(c => c.CategoryId == e.Value.ToString()).ToList();
+    }
+
+}

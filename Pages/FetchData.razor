@@ -2,11 +2,19 @@
 
 @using BlazorTest.Data
 @inject WeatherForecastService ForecastService
+@inject B_Category CategoryService
 
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 <button @onclick="CreateStorage">Add Storage</button>
+<button @onclick="UpdateCategory">Update</button>
+
+
+<input type="text" name="text" @bind-value='@idCategory'>
+
+<input type="text" name="text" @bind-value='@categoryName'>
+
 <p>@afectedRows</p>
 @if (storages == null)
 {
@@ -54,6 +62,8 @@ else
     private WeatherForecast[] forecasts;
     private List<BlazorTest.Entities.Storage> storages;
     private string afectedRows;
+    private string idCategory;
+    private string categoryName;
 
     protected override async Task OnInitializedAsync()
     {
@@ -63,7 +73,24 @@ else
 
     public async Task CreateStorage()
     {
-       int afectedRowsProcess = await ForecastService.AgregarStorage();
-       afectedRows = $"Affected Rows: {afectedRowsProcess}";
+        int afectedRowsProcess = await CategoryService.CreateCategory(
+            new Entities.Category
+            {
+                Id = idCategory,
+                Name = categoryName
+            }
+            );
+        afectedRows = $"Affected Rows: {afectedRowsProcess}";
+    }
+
+    public async Task UpdateCategory()
+    {
+         await CategoryService.UpdateCategory(
+            new Entities.Category
+            {
+                Id = idCategory,
+                Name = categoryName
+            }
+            );
     }
 }

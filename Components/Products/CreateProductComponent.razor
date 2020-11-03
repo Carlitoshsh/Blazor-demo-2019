@@ -1,0 +1,70 @@
+﻿@using BlazorTest.Entities
+@inject B_Product ProductService
+@inject B_Category CategoryService
+@inject NavigationManager NavManager
+
+<h3>CreateProductComponent</h3>
+
+
+<div>
+    <EditForm Model="product">
+        @if (IdProduct == null)
+        {
+            <label>id</label>
+            <InputText @bind-Value="product.Id"></InputText>
+        }
+        <label>nombre</label>
+        <InputText @bind-Value="product.Name"></InputText>
+        <label>descripcion</label>
+        <InputText @bind-Value="product.Description"></InputText>
+
+        <label>select</label>
+        <InputSelect @bind-Value="product.CategoryId">
+            @foreach (Category category in categories)
+            {
+                <option value="@category.Id">@category.Name</option>
+            }
+        </InputSelect>
+        @if (IdProduct == null)
+        {
+            <input type="button" value="Agregar producto" @onclick="SaveProduct" />
+        }
+        else
+        {
+            <input type="button" value="Actualizar producto" @onclick="UpdateProduct" />
+        }
+
+
+
+
+    </EditForm>
+</div>
+
+
+@code {
+    [Parameter]
+    public string IdProduct { get; set; }
+
+    Product product = new Product();
+    List<Category> categories = new List<Category>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await CategoryService.CategoryList();
+    }
+
+
+    private async Task SaveProduct()
+    {
+        await ProductService.CreateProduct(product);
+        NavManager.NavigateTo("list-products");
+    }
+
+    private async Task UpdateProduct()
+    {
+        product.Id = IdProduct;
+        await ProductService.UpdateProduct(product);
+        NavManager.NavigateTo("list-products");
+    }
+}

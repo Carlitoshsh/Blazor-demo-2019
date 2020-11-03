@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorTest.Data;
+using BlazorTest.Business;
 
 namespace BlazorTest
 {
@@ -29,6 +30,11 @@ namespace BlazorTest
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<B_Category>();
+            services.AddSingleton<B_Storage>();
+            services.AddSingleton<B_Warehouse>();
+            services.AddSingleton<B_InputOutput>();
+            services.AddSingleton<B_Product>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
