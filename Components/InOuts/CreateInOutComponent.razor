@@ -1,0 +1,25 @@
+@using BlazorTest.Entities
+@inject B_Warehouse WarehouseService
+
+<select name="" id="" @onchange="OnChangedWarehouse">
+    <option disabled>Seleccione una bodega</option>
+    @foreach (var item in warehouses)
+    {
+        <option value="@item.Id">@item.Name</option>
+    }
+</select>
+
+@code {
+    InputOutput inputOutput = new InputOutput();
+    List<Warehouse> warehouses = new List<Warehouse>();
+    List<Storage> storages = new List<Storage>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        warehouses = await WarehouseService.WarehouseList();
+    }
+
+    private void OnChangedWarehouse(ChangeEventArgs e){
+        var idWarehouse = e.Value.ToString();
+    }
+}

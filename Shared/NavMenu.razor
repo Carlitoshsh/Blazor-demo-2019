@@ -4,21 +4,30 @@
 </div>
 
 <div id="myNav" class="overlay @NavMenuCssClass">
-    <a class="closebtn" @onclick="ToggleNavMenu">&times;</a>
-    <menu @onclick="ToggleNavMenu">
-        <NavLink href="counter">
-            Counter
-        </NavLink>
-        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-            Principal
-        </NavLink>
-        <NavLink class="nav-link" href="fetchdata">
-            Data fetched
-        </NavLink>
-        <NavLink class="nav-link" href="list-products">
-            List products
-        </NavLink>
-    </menu>
+    <div class="wrapper">
+
+        <a class="closebtn" @onclick="ToggleNavMenu">&times;</a>
+        <menu @onclick="ToggleNavMenu">
+            <NavLink href="counter">
+                Counter
+            </NavLink>
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                Principal
+            </NavLink>
+            <NavLink class="nav-link" href="fetchdata">
+                Data fetched
+            </NavLink>
+            <NavLink class="nav-link" href="list-products">
+                List products
+            </NavLink>
+            <NavLink class="nav-link" href="createStorage">
+                Create Storage
+            </NavLink>
+            <NavLink href="inout">
+                In/Out
+            </NavLink>
+        </menu>
+    </div>
 </div>
 
 @code {

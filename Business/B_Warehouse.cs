@@ -34,9 +34,9 @@ namespace BlazorTest.Business
                );
         }
 
-        public async Task<List<Category>> WarehouseList()
+        public async Task<List<Warehouse>> WarehouseList()
         {
-            return await Query<Category>("select * from Warehouse");
+            return await Query<Warehouse>("select * from Warehouse");
         }
     }
 }
