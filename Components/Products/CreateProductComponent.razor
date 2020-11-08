@@ -9,39 +9,42 @@
 <div>
     <EditForm Model="product">
         @if (IdProduct == null)
-        {
-            <label>id</label>
-            <InputText @bind-Value="product.Id"></InputText>
-        }
-        <label>nombre</label>
-        <InputText @bind-Value="product.Name"></InputText>
-        <label>descripcion</label>
-        <InputText @bind-Value="product.Description"></InputText>
-
-        <label>select</label>
-        <InputSelect @bind-Value="product.CategoryId">
-            @foreach (Category category in categories)
             {
-                <option value="@category.Id">@category.Name</option>
+                <label>ID</label>
+                <InputText @bind-Value="product.Id"></InputText>
             }
-        </InputSelect>
-        @if (IdProduct == null)
-        {
-            <input type="button" value="Agregar producto" @onclick="SaveProduct" />
-        }
-        else
-        {
-            <input type="button" value="Actualizar producto" @onclick="UpdateProduct" />
-        }
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <InputText id="nombre" @bind-Value="product.Name"></InputText>
+                </div>
+
+                <label>Descripcion</label>
+                <InputText @bind-Value="product.Description"></InputText>
+
+                <label>Categoria</label>
+                <InputSelect @bind-Value="product.CategoryId">
+                    @foreach (Category category in categories)
+                    {
+                        <option value="@category.Id">@category.Name</option>
+                    }
+                </InputSelect>
+                @if (IdProduct == null)
+            {
+                <input type="button" value="Agregar producto" @onclick="SaveProduct" />
+            }
+            else
+            {
+                <input type="button" value="Actualizar producto" @onclick="UpdateProduct" />
+            }
 
 
 
 
-    </EditForm>
-</div>
+        </EditForm>
+    </div>
 
 
-@code {
+    @code {
     [Parameter]
     public string IdProduct { get; set; }
 
