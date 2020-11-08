@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorTest.Data;
 using BlazorTest.Business;
+using BlazorTest.Helpers;
+using System.Security.Authentication;
+using System.Net.Http;
 
 namespace BlazorTest
 {
@@ -29,6 +32,21 @@ namespace BlazorTest
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+            services
+                .AddHttpClient("configured-inner-handler")
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    ClientCertificateOptions = ClientCertificateOption.Manual,
+                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true
+                })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(30));
+
+            AddSingletons(services);
+        }
+
+        private static void AddSingletons(IServiceCollection services)
+        {
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<B_Category>();
             services.AddSingleton<B_Storage>();
@@ -51,6 +69,7 @@ namespace BlazorTest
                 app.UseHsts();
             }
 
+            app.UseMiddleware(typeof(ErrorsHandler));
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
