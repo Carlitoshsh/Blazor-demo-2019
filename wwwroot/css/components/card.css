@@ -1,0 +1,22 @@
+.card-header {
+  display: flex;
+  align-items: center;
+  min-width: 200px;
+  max-width: 500px;
+  border: 1px solid var(--main-bg-color);
+  border-radius: 3px;
+}
+
+.card {
+  color: rgba(var(--main-bg-color), 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.card-header .description h4 {
+  margin: 1.38rem 0 1.38rem;
+}
+
+.card-header .image {
+  display: flex;
+}

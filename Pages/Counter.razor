@@ -1,15 +1,13 @@
 ﻿@page "/counter"
 @inject PokemonApi pokemon
 
-<FormTest Message="Test" />
-<p>Current count: @currentCount</p>
 <input type="text" name="name" @bind-value="@pokemonName" />
 <button @onclick="SearchPokemon">Search</button>
-
+<br />
 @if (generations != null)
 {
     <select name="" id="" @onchange="OnChangedGeneration">
-        <option disabled>Seleccione una bodega</option>
+        <option disabled>Select a generation</option>
         @foreach (var item in generations.results)
         {
             <option value="@item.url">@item.name</option>
@@ -18,10 +16,11 @@
 
 }
 
-@if (pokemonByGeneration != null)
+    @if (pokemonByGeneration != null)
 {
+    <h3>@pokemonByGeneration.main_region.name</h3>
     <select name="" id="" @onchange="OnPokemonSelected">
-        <option disabled>Seleccione una bodega</option>
+        <option disabled>Select an pokemon</option>
         @foreach (var item in pokemonByGeneration.pokemon_species)
         {
             <option value="@item.name">@item.name</option>
@@ -30,11 +29,19 @@
 
 }
 
-@if (pokemonProperties.name != null)
+    @if (pokemonProperties.name != null)
 {
-    <h4>@pokemonProperties.name</h4>
-    <span>@pokemonProperties.types.FirstOrDefault().type.name</span>
-    <img src="@pokemonProperties.sprites.front_default" />
+    <div class="card">
+        <div class="card-header">
+            <div class="image">
+                <img src="@pokemonProperties.sprites.front_default" />
+            </div>
+            <div class="description">
+                <h4>@pokemonProperties.name.ToUpper()</h4>
+            </div>
+        </div>
+        <span>Type: @pokemonProperties.types.FirstOrDefault().type.name</span>
+    </div>
 }
 else
 {
@@ -47,8 +54,6 @@ else
     PokemonProperties pokemonProperties = new PokemonProperties();
     GenerationResponse generations;
     GenerationProperties pokemonByGeneration;
-
-    private int currentCount = 0;
 
     protected override async Task OnInitializedAsync()
     {
