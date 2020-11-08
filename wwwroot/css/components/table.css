@@ -1,0 +1,25 @@
+@media (max-width: 32rem) {
+  .theading {
+    display: none;
+  }
+  .tcontent {
+    display: block;
+    padding: 0.5rem 0;
+  }
+  .trow {
+    margin: 0.25rem 1rem;
+    padding: 0.5rem 0;
+    display: block;
+    border-bottom: 2px solid var(--main-bg-color);
+  }
+  .tcontent:before {
+    content: attr(data-heading);
+    display: inline-block;
+    width: 5rem;
+    margin-right: 0.5rem;
+    color: rgba(var(--main-bg-color), 0.8);;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}

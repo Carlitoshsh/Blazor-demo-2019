@@ -12,39 +12,38 @@
             {
                 <label>ID</label>
                 <InputText @bind-Value="product.Id"></InputText>
+            } else {
+                <label>ID: @IdProduct</label>
             }
-                <div>
-                    <label for="nombre">Nombre</label>
-                    <InputText id="nombre" @bind-Value="product.Name"></InputText>
-                </div>
+            <label for="nombre">Nombre</label>
+            <InputText id="nombre" @bind-Value="product.Name"></InputText>
 
-                <label>Descripcion</label>
-                <InputText @bind-Value="product.Description"></InputText>
+            <label>Descripcion</label>
+            <InputText @bind-Value="product.Description"></InputText>
 
-                <label>Categoria</label>
-                <InputSelect @bind-Value="product.CategoryId">
-                    @foreach (Category category in categories)
+            <label>Categoria</label>
+            <InputSelect @bind-Value="product.CategoryId">
+                @foreach (Category category in categories)
                     {
                         <option value="@category.Id">@category.Name</option>
                     }
                 </InputSelect>
+                <br/>
+
                 @if (IdProduct == null)
             {
-                <input type="button" value="Agregar producto" @onclick="SaveProduct" />
+                <button @onclick="SaveProduct">Agregar producto</button>
             }
             else
             {
-                <input type="button" value="Actualizar producto" @onclick="UpdateProduct" />
+                <button @onclick="UpdateProduct">Actualizar producto</button>
             }
 
+            </EditForm>
+        </div>
 
 
-
-        </EditForm>
-    </div>
-
-
-    @code {
+        @code {
     [Parameter]
     public string IdProduct { get; set; }
 

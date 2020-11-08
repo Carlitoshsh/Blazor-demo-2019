@@ -14,20 +14,20 @@
 <table class="table">
     <thead>
         <tr>
-            <th>Id</th>
-            <th>Name. (C)</th>
-            <th>Category (F)</th>
-            <th></th>
+            <th class="theading">Id</th>
+            <th class="theading">Name. (C)</th>
+            <th class="theading">Category (F)</th>
+            <th class="theading"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var product in tempProducts)
         {
-            <tr>
-                <td>@product.Id</td>
-                <td>@product.Name</td>
-                <td>@product.CategoryId</td>
-                <td>
+            <tr class="trow">
+                <td class="tcontent" data-heading="Id">@product.Id</td>
+                <td class="tcontent" data-heading="Name">@product.Name</td>
+                <td class="tcontent" data-heading="Category">@product.CategoryId</td>
+                <td class="tcontent" data-heading="">
                     <a href="update/@product.Id">Editar</a>
                 </td>
             </tr>
