@@ -5,45 +5,46 @@
 
 <h3>CreateProductComponent</h3>
 
-
 <div>
     <EditForm Model="product">
         @if (IdProduct == null)
+        {
+            <label>ID</label>
+            <InputText @bind-Value="product.Id"></InputText>
+        }
+        else
+        {
+            <label>ID: @IdProduct</label>
+        }
+        <label for="nombre">Nombre</label>
+        <InputText id="nombre" @bind-Value="product.Name"></InputText>
+
+        <label>Descripcion</label>
+        <InputText @bind-Value="product.Description"></InputText>
+
+        <label>Categoria</label>
+        <InputSelect @bind-Value="product.CategoryId">
+            @foreach (Category category in categories)
             {
-                <label>ID</label>
-                <InputText @bind-Value="product.Id"></InputText>
-            } else {
-                <label>ID: @IdProduct</label>
+                <option value="@category.Id">@category.Name</option>
             }
-            <label for="nombre">Nombre</label>
-            <InputText id="nombre" @bind-Value="product.Name"></InputText>
+        </InputSelect>
+        <br />
 
-            <label>Descripcion</label>
-            <InputText @bind-Value="product.Description"></InputText>
+        @if (IdProduct == null)
+        {
+            <button @onclick="SaveProduct">Agregar producto</button>
+        }
+        else
+        {
+            <button @onclick="UpdateProduct">Actualizar producto</button>
+        }
 
-            <label>Categoria</label>
-            <InputSelect @bind-Value="product.CategoryId">
-                @foreach (Category category in categories)
-                    {
-                        <option value="@category.Id">@category.Name</option>
-                    }
-                </InputSelect>
-                <br />
-
-                @if (IdProduct == null)
-            {
-                <button @onclick="SaveProduct">Agregar producto</button>
-            }
-            else
-            {
-                <button @onclick="UpdateProduct">Actualizar producto</button>
-            }
-
-            </EditForm>
-        </div>
+    </EditForm>
+</div>
 
 
-        @code {
+@code {
     [Parameter]
     public string IdProduct { get; set; }
 

@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using BlazorTest.Helpers;
 
-
 namespace BlazorTest.Business.API
 {
-    public class BaseAPIConsume {
-
+    public class BaseApiConsume
+    {
         protected readonly IHttpClientFactory _httpClientFactory;
 
-        public BaseAPIConsume(IHttpClientFactory httpClientFactory){
+        public BaseApiConsume(IHttpClientFactory httpClientFactory)
+        {
             _httpClientFactory = httpClientFactory;
         }
 
         protected async Task<T> ConsumirApi<T>(string metodo, HttpMethod httpMethod, string json = "", string token = "")
-            {
-            ConnectWithService conector = new ConnectWithService(_httpClientFactory, "https://pokeapi.co/api/v2/");
+        {
+            ConnectWithService conector = new ConnectWithService(_httpClientFactory);
             return await conector.ConstruirMetodo<T>(metodo, httpMethod, json, token);
-            }
+        }
     }
 }

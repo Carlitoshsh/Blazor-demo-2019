@@ -12,13 +12,11 @@ namespace BlazorTest.Helpers
 
     public class ConnectWithService
     {
-        private readonly string _servicioExpuesto;
         private readonly IHttpClientFactory _clientFactory;
         public string Respuesta { get; private set; }
-        public ConnectWithService(IHttpClientFactory clientFactory, string urlServicioAConectar)
+        public ConnectWithService(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
-            _servicioExpuesto = urlServicioAConectar;
         }
 
         public async Task ComunicarseConServicio(HttpRequestMessage elRequest, string token = "")
@@ -63,7 +61,7 @@ namespace BlazorTest.Helpers
 
         public async Task<T> ConstruirMetodo<T>(string metodo, HttpMethod httpMethod, string json, string token)
         {
-            HttpRequestMessage request = new HttpRequestMessage(httpMethod, _servicioExpuesto + metodo);
+            HttpRequestMessage request = new HttpRequestMessage(httpMethod, metodo);
             if (!string.IsNullOrEmpty(json))
             {
                 request.Content = new StringContent(json, Encoding.UTF8, "application/json");

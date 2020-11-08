@@ -1,22 +1,73 @@
 ﻿@page "/counter"
+@inject PokemonApi pokemon
 
 <FormTest Message="Test" />
 <p>Current count: @currentCount</p>
-<span>Test</span>
-<button @onclick="IncrementCount">+</button>
-<button @onclick="DecrementCount">-</button>
+<input type="text" name="name" @bind-value="@pokemonName" />
+<button @onclick="SearchPokemon">Search</button>
+
+@if (generations != null)
+{
+    <select name="" id="" @onchange="OnChangedGeneration">
+        <option disabled>Seleccione una bodega</option>
+        @foreach (var item in generations.results)
+        {
+            <option value="@item.url">@item.name</option>
+        }
+    </select>
+
+}
+
+@if (pokemonByGeneration != null)
+{
+    <select name="" id="" @onchange="OnPokemonSelected">
+        <option disabled>Seleccione una bodega</option>
+        @foreach (var item in pokemonByGeneration.pokemon_species)
+        {
+            <option value="@item.name">@item.name</option>
+        }
+    </select>
+
+}
+
+@if (pokemonProperties.name != null)
+{
+    <h4>@pokemonProperties.name</h4>
+    <span>@pokemonProperties.types.FirstOrDefault().type.name</span>
+    <img src="@pokemonProperties.sprites.front_default" />
+}
+else
+{
+    <h4>Pokemon not found!</h4>
+}
+
 
 @code {
+    string pokemonName = "bulbasaur";
+    PokemonProperties pokemonProperties = new PokemonProperties();
+    GenerationResponse generations;
+    GenerationProperties pokemonByGeneration;
+
     private int currentCount = 0;
 
-    private void IncrementCount()
+    protected override async Task OnInitializedAsync()
     {
-        currentCount++;
+        generations = await pokemon.GetPokemonGenerations();
     }
 
-    private void DecrementCount()
+    private async Task SearchPokemon()
     {
-        currentCount--;
+        pokemonProperties = await pokemon.GetPokemonProperties(pokemonName);
+    }
+
+    private async Task OnChangedGeneration(ChangeEventArgs e)
+    {
+        pokemonByGeneration = await pokemon.GetPokemonsByGenerations(e.Value.ToString());
+    }
+
+    private async Task OnPokemonSelected(ChangeEventArgs e)
+    {
+        pokemonProperties = await pokemon.GetPokemonProperties(e.Value.ToString());
     }
 
 }

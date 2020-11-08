@@ -14,6 +14,7 @@ using BlazorTest.Business;
 using BlazorTest.Helpers;
 using System.Security.Authentication;
 using System.Net.Http;
+using BlazorTest.Business.API;
 
 namespace BlazorTest
 {
@@ -32,6 +33,7 @@ namespace BlazorTest
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            AddSingletons(services);
 
             services
                 .AddHttpClient("configured-inner-handler")
@@ -42,7 +44,6 @@ namespace BlazorTest
                 })
                 .SetHandlerLifetime(TimeSpan.FromMinutes(30));
 
-            AddSingletons(services);
         }
 
         private static void AddSingletons(IServiceCollection services)
@@ -53,6 +54,8 @@ namespace BlazorTest
             services.AddSingleton<B_Warehouse>();
             services.AddSingleton<B_InputOutput>();
             services.AddSingleton<B_Product>();
+            services.AddSingleton<BaseApiConsume>();
+            services.AddSingleton<PokemonApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,7 +72,6 @@ namespace BlazorTest
                 app.UseHsts();
             }
 
-            app.UseMiddleware(typeof(ErrorsHandler));
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

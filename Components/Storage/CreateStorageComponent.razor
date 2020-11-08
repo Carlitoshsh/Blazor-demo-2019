@@ -7,23 +7,23 @@
     <div>
         <label for="">Bodega</label>
         <InputSelect @bind-Value="storage.Id">
-        <option disabled>Seleccione una opcion</option>
-        @foreach (var item in warehouses)
-        {
-            <option value="@item.Id">@item.Name</option>
-        }
+            <option disabled>Seleccione una opcion</option>
+            @foreach (var item in warehouses)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
         </InputSelect>
     </div>
-        <div>
+    <div>
         <label for="">Bodega</label>
         <InputSelect @bind-Value="storage.ProductId">
-        <option disabled>Seleccione una opcion</option>
-        @foreach (var product in products)
-        {
-            <option value="@product.Id">@product.Name</option>
-        }
+            <option disabled>Seleccione una opcion</option>
+            @foreach (var product in products)
+            {
+                <option value="@product.Id">@product.Name</option>
+            }
         </InputSelect>
-<button @onclick="SaveStorage">Save Storage</button>
+        <button @onclick="SaveStorage">Save Storage</button>
 
     </div>
 </EditForm>

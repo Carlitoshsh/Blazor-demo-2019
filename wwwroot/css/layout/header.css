@@ -6,6 +6,7 @@ header {
 .brand {
   color: white;
   font-size: 1.953rem;
+  text-decoration: none;
 }
 
 .content {

@@ -6,3 +6,10 @@ button {
   font-weight: bold;
   padding: 5px 10px;
 }
+
+button:hover {
+  border: 1px solid white;
+  color: white;
+  background-color:var(--main-bg-color);
+}
+
