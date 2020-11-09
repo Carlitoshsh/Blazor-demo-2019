@@ -1,4 +1,4 @@
-﻿@page "/counter"
+﻿@page "/pokemon-api"
 @inject PokemonApi pokemon
 
 <h3>Testing pokemon API...</h3>
@@ -7,7 +7,9 @@
 <input type="text" name="name" @bind-value="@pokemonName" />
 <br />
 <button @onclick="SearchPokemon">Search</button>
-<br />
+
+<h4>Search by generation</h4>
+
 @if (generations != null)
 {
     <select name="" id="" @onchange="OnChangedGeneration">
@@ -22,7 +24,7 @@
 
     @if (pokemonByGeneration != null)
 {
-    <h4>@pokemonByGeneration.main_region.name</h4>
+    <h5>@pokemonByGeneration.main_region.name.ToUpper()</h5>
     <select name="" id="" @onchange="OnPokemonSelected">
         <option disabled>Select a pokemon</option>
         @foreach (var item in pokemonByGeneration.pokemon_species)

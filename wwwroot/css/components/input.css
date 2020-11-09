@@ -4,7 +4,7 @@ select {
   /* border: 1px solid var(--main-bg-color); */
   border-radius: 6px;
   margin: 0 0 1.3rem;
-  min-width: 25rem;
+  min-width: 15rem;
 }
 
 label {
