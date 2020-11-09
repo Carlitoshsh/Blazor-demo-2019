@@ -1,25 +1,44 @@
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
 @media (max-width: 32rem) {
   .theading {
     display: none;
+  }
+  td,
+  th {
+    border: none;
   }
   .tcontent {
     display: block;
     padding: 0.5rem 0;
   }
   .trow {
-    margin: 0.25rem 1rem;
-    padding: 0.5rem 0;
+    padding: 0.25rem 1rem;
+    margin: 0.5rem 0;
     display: block;
-    border-bottom: 2px solid var(--main-bg-color);
+    border: 1px solid var(--main-bg-color);
+    border-radius: 6px;
   }
   .tcontent:before {
     content: attr(data-heading);
     display: inline-block;
     width: 5rem;
-    margin-right: 0.5rem;
-    color: rgba(var(--main-bg-color), 0.8);;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    margin-right: 1.5rem;
+    color: rgba(var(--main-bg-color), 0.8);
   }
 }

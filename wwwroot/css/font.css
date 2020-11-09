@@ -11,6 +11,12 @@ body,
   line-height: 1.75;
 }
 
+input,
+select,
+button {
+  font-size: medium;
+}
+
 p {
   margin-bottom: 1rem;
 }

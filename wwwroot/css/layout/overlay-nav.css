@@ -5,7 +5,8 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: var(--main-bg-color);
+  background-color: black;
+  background-image: url("/svg/floating-cogs.svg");
   overflow-y: hidden;
   transition: -0.5s;
 }
@@ -45,6 +46,10 @@
 
 .hide {
   height: 0%;
+}
+
+menu {
+  margin: 2rem 0;
 }
 
 @media screen and (max-height: 450px) {

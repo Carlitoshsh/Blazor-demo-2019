@@ -1,7 +1,11 @@
 ﻿@page "/counter"
 @inject PokemonApi pokemon
 
+<h3>Testing pokemon API...</h3>
+
+<label for="name">Write a Pokemon name...</label>
 <input type="text" name="name" @bind-value="@pokemonName" />
+<br />
 <button @onclick="SearchPokemon">Search</button>
 <br />
 @if (generations != null)
@@ -18,9 +22,9 @@
 
     @if (pokemonByGeneration != null)
 {
-    <h3>@pokemonByGeneration.main_region.name</h3>
+    <h4>@pokemonByGeneration.main_region.name</h4>
     <select name="" id="" @onchange="OnPokemonSelected">
-        <option disabled>Select an pokemon</option>
+        <option disabled>Select a pokemon</option>
         @foreach (var item in pokemonByGeneration.pokemon_species)
         {
             <option value="@item.name">@item.name</option>
@@ -40,6 +44,7 @@
                 <h4>@pokemonProperties.name.ToUpper()</h4>
             </div>
         </div>
+        <h5># @pokemonProperties.order</h5>
         <span>Type: @pokemonProperties.types.FirstOrDefault().type.name</span>
     </div>
 }
