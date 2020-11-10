@@ -17,14 +17,15 @@
         {
             <label>ID: @IdProduct</label>
         }
-        <label for="nombre">Nombre</label>
+        <label for="nombre">Name</label>
         <InputText id="nombre" @bind-Value="product.Name"></InputText>
 
-        <label>Descripcion</label>
+        <label>Description</label>
         <InputText @bind-Value="product.Description"></InputText>
 
-        <label>Categoria</label>
+        <label>Category</label>
         <InputSelect @bind-Value="product.CategoryId">
+            <option disabled>Select an option...</option>
             @foreach (Category category in categories)
             {
                 <option value="@category.Id">@category.Name</option>
@@ -34,11 +35,11 @@
 
         @if (IdProduct == null)
         {
-            <button @onclick="SaveProduct">Agregar producto</button>
+            <button @onclick="SaveProduct">Add product</button>
         }
         else
         {
-            <button @onclick="UpdateProduct">Actualizar producto</button>
+            <button @onclick="UpdateProduct">Update product</button>
         }
 
     </EditForm>

@@ -7,27 +7,16 @@
 <h1>Weather forecast</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
-<button @onclick="CreateStorage">Add Storage</button>
-<button @onclick="UpdateCategory">Update</button>
 
+<label for="category">ID for Category</label>
+<input type="text" name="category" @bind-value='@idCategory'>
 
-<input type="text" name="text" @bind-value='@idCategory'>
+<label for="namecategory">Name for Category</label>
+<input type="text" name="namecategory" @bind-value='@categoryName'>
 
-<input type="text" name="text" @bind-value='@categoryName'>
-
+<button @onclick="CreateCategory">Add Category</button>
+<button @onclick="UpdateCategory">Update Category</button>
 <p>@afectedRows</p>
-@if (storages == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    @foreach (var storage in storages)
-    {
-        <p>@storage.LastUpdate</p>
-        <p>@storage.PartialQuantity</p>
-    }
-}
 
 @if (forecasts == null)
 {
@@ -38,20 +27,20 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
-                <th>Summary</th>
+                <th class="theading">Date</th>
+                <th class="theading">Temp. (C)</th>
+                <th class="theading">Temp. (F)</th>
+                <th class="theading">Summary</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
-                    <td>@forecast.TemperatureC</td>
-                    <td>@forecast.TemperatureF</td>
-                    <td>@forecast.Summary</td>
+                    <td class="tcontent" data-heading="Date">@forecast.Date.ToShortDateString()</td>
+                    <td class="tcontent" data-heading="Temp. (C)">@forecast.TemperatureC</td>
+                    <td class="tcontent" data-heading="Temp. (F)">@forecast.TemperatureF</td>
+                    <td class="tcontent" data-heading="Summary">@forecast.Summary</td>
                 </tr>
             }
         </tbody>
@@ -60,7 +49,6 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
-    private List<BlazorTest.Entities.Storage> storages;
     private string afectedRows;
     private string idCategory;
     private string categoryName;
@@ -68,10 +56,9 @@ else
     protected override async Task OnInitializedAsync()
     {
         forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
-        storages = await ForecastService.TestConnection();
     }
 
-    public async Task CreateStorage()
+    public async Task CreateCategory()
     {
         int afectedRowsProcess = await CategoryService.CreateCategory(
             new Entities.Category
