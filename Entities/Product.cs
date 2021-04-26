@@ -9,15 +9,23 @@ namespace BlazorTest.Entities
     public class Product
     {
         [Key]
-        [StringLength(10)]
+        [MinLength(3, ErrorMessage = "El mínimo requerido es 3 caracteres")]
+        [MaxLength(10, ErrorMessage = "El máximo requerido es 10")]
+        [Required(ErrorMessage = "Este campo es requerido")]
         public string Id { get; set; }
-       
-        [Required]
+
         [StringLength(100)]
+        [Required]
         public string Name { get; set; }
-        
+
+        [Required]
         [StringLength(600)]
         public string Description { get; set; }
+
+        [Required]
+        [RegularExpression(@"^[a-zA-Z0-9_\.-]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}",
+         ErrorMessage = "No es un email permitido.")]
+        public string Email { get; set; }
 
         public int TotalQuantity { get; set; }
 
