@@ -1,22 +1,9 @@
-﻿@page "/fetchdata"
-
-@using BlazorTest.Data
-@inject WeatherForecastService ForecastService
-@inject B_Category CategoryService
+@page "/fetchdata"
+@inject HttpClient Http
 
 <h1>Weather forecast</h1>
 
-<p>This component demonstrates fetching data from a service.</p>
-
-<label for="category">ID for Category</label>
-<input type="text" name="category" @bind-value='@idCategory'>
-
-<label for="namecategory">Name for Category</label>
-<input type="text" name="namecategory" @bind-value='@categoryName'>
-
-<button @onclick="CreateCategory">Add Category</button>
-<button @onclick="UpdateCategory">Update Category</button>
-<p>@afectedRows</p>
+<p>This component demonstrates fetching data from the server.</p>
 
 @if (forecasts == null)
 {
@@ -27,20 +14,20 @@ else
     <table class="table">
         <thead>
             <tr>
-                <th class="theading">Date</th>
-                <th class="theading">Temp. (C)</th>
-                <th class="theading">Temp. (F)</th>
-                <th class="theading">Summary</th>
+                <th>Date</th>
+                <th>Temp. (C)</th>
+                <th>Temp. (F)</th>
+                <th>Summary</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td class="tcontent" data-heading="Date">@forecast.Date.ToShortDateString()</td>
-                    <td class="tcontent" data-heading="Temp. (C)">@forecast.TemperatureC</td>
-                    <td class="tcontent" data-heading="Temp. (F)">@forecast.TemperatureF</td>
-                    <td class="tcontent" data-heading="Summary">@forecast.Summary</td>
+                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.TemperatureC</td>
+                    <td>@forecast.TemperatureF</td>
+                    <td>@forecast.Summary</td>
                 </tr>
             }
         </tbody>
@@ -49,35 +36,20 @@ else
 
 @code {
     private WeatherForecast[] forecasts;
-    private string afectedRows;
-    private string idCategory;
-    private string categoryName;
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
     }
 
-    public async Task CreateCategory()
+    public class WeatherForecast
     {
-        int afectedRowsProcess = await CategoryService.CreateCategory(
-            new Entities.Category
-            {
-                Id = idCategory,
-                Name = categoryName
-            }
-            );
-        afectedRows = $"Affected Rows: {afectedRowsProcess}";
-    }
+        public DateTime Date { get; set; }
 
-    public async Task UpdateCategory()
-    {
-         await CategoryService.UpdateCategory(
-            new Entities.Category
-            {
-                Id = idCategory,
-                Name = categoryName
-            }
-            );
+        public int TemperatureC { get; set; }
+
+        public string Summary { get; set; }
+
+        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 }
