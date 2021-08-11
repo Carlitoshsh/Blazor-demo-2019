@@ -1,0 +1,10 @@
+footer {
+  background-color: black;
+  background-image: url("/svg/floating-cogs.svg");
+  padding: 10px 20px;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+}

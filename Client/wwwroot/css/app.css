@@ -8,13 +8,13 @@ body {
 
 a,
 .btn-link {
-  color: #0366d6;
+  color: #E7625F;
 }
 
 .btn-primary {
   color: #fff;
-  background-color: #0e2c49;
-  border-color: #4f6f8f;
+  background-color: #E7625F;
+  border-color: #E7625F;
 }
 
 app {
@@ -51,7 +51,7 @@ app {
 }
 
 .sidebar {
-  background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+  background-image: linear-gradient(180deg, #E7625F 0%, #d8781d 70%);
 }
 
 .sidebar .top-row {

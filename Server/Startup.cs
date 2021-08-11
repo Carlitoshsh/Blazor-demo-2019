@@ -6,6 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
+using BlazorTest.Server.Business;
+using BlazorTest.Server.Helpers;
+using BlazorTest.Server.Business.API;
+using System.Security.Authentication;
+using System.Net.Http;
+using System;
 
 namespace BlazorTest.Server
 {
@@ -25,6 +31,28 @@ namespace BlazorTest.Server
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+            AddSingletons(services);
+
+            services
+                .AddHttpClient("configured-inner-handler")
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    ClientCertificateOptions = ClientCertificateOption.Manual,
+                    ServerCertificateCustomValidationCallback = (httpRequestMessage, cert, cetChain, policyErrors) => true
+                })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(30));
+
+        }
+
+        private static void AddSingletons(IServiceCollection services)
+        {
+            services.AddSingleton<B_Category>();
+            services.AddSingleton<B_Storage>();
+            services.AddSingleton<B_Warehouse>();
+            services.AddSingleton<B_InputOutput>();
+            services.AddSingleton<B_Product>();
+            services.AddSingleton<BaseApiConsume>();
+            services.AddSingleton<PokemonApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

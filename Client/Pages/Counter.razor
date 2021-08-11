@@ -1,10 +1,11 @@
 ﻿@page "/counter"
 
-<h1>🎛🎮 Counter</h1>
+<h1>🎛🎮 Contador</h1>
 
 <p>Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="IncrementCount">Incrementar</button>
+<button class="btn btn-primary" @onclick="DecrementCount">Decrementar</button>
 
 @code {
     private int currentCount = 0;
@@ -12,5 +13,10 @@
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    private void DecrementCount()
+    {
+        currentCount--;
     }
 }
