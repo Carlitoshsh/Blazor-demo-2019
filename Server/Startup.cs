@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using System.Linq;
 using BlazorTest.Server.Business;
 using BlazorTest.Server.Helpers;
-using BlazorTest.Server.Business.API;
 using System.Security.Authentication;
 using System.Net.Http;
 using System;
@@ -51,8 +50,6 @@ namespace BlazorTest.Server
             services.AddSingleton<B_Warehouse>();
             services.AddSingleton<B_InputOutput>();
             services.AddSingleton<B_Product>();
-            services.AddSingleton<BaseApiConsume>();
-            services.AddSingleton<PokemonApi>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

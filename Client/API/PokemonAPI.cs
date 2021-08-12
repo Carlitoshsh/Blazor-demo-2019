@@ -1,12 +1,11 @@
-using BlazorTest.Server.Entities;
-using BlazorTest.Server.Entities.PokemonAPI;
+using BlazorTest.Shared.PokemonAPI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace BlazorTest.Server.Business.API
+namespace BlazorTest.Client.API
 {
     public class PokemonApi: BaseApiConsume 
     {

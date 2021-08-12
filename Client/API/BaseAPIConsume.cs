@@ -1,12 +1,11 @@
-using BlazorTest.Server.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
-using BlazorTest.Server.Helpers;
+using BlazorTest.Client.Helpers;
 
-namespace BlazorTest.Server.Business.API
+namespace BlazorTest.Client.API
 {
     public class BaseApiConsume
     {

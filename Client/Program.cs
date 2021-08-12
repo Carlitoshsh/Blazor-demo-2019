@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorTest.Client.API;
 
 namespace BlazorTest.Client
 {
@@ -17,7 +18,11 @@ namespace BlazorTest.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            // Singletons
+            builder.Services.AddSingleton<BaseApiConsume>();
+            builder.Services.AddSingleton<PokemonApi>();
+
+            builder.Services.AddHttpClient("configured-inner-handler");
 
             await builder.Build().RunAsync();
         }
