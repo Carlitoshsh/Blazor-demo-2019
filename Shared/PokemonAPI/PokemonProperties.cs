@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace BlazorTest.Shared.PokemonAPI
 {
@@ -88,7 +89,8 @@ namespace BlazorTest.Shared.PokemonAPI
     public class Other
     {
         public DreamWorld dream_world { get; set; }
-        public OfficialArtwork OfficialArtwork { get; set; }
+        [JsonPropertyName("official-artwork")]
+        public OfficialArtwork officialArtwork { get; set; }
     }
 
     public class RedBlue

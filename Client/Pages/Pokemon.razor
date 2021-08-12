@@ -1,5 +1,5 @@
 @page "/pokemon"
-
+@using System.Globalization
 @inject PokemonApi pokemon
 
 <h3>Testing pokemon API...</h3>
@@ -12,36 +12,47 @@
 <h4>Search by generation</h4>
 
 @if (generations != null)
+
 {
     <select name="" id="" @onchange="OnChangedGeneration">
         <option disabled>Select a generation</option>
         @foreach (var item in generations.results)
+
         {
             <option value="@item.url">@item.name</option>
+
         }
     </select>
+
+
 
 }
 
 @if (pokemonByGeneration != null)
+
 {
     <h5>@pokemonByGeneration.main_region.name.ToUpper()</h5>
     <select name="" id="" @onchange="OnPokemonSelected">
         <option disabled>Select a pokemon</option>
         @foreach (var item in pokemonByGeneration.pokemon_species)
+
         {
-            <option value="@item.name">@item.name</option>
+            <option value="@item.name">@((new CultureInfo("en-US",false).TextInfo).ToTitleCase(item.name))</option>
+
         }
     </select>
+
+
 
 }
 
 @if (pokemonProperties.name != null)
+
 {
     <div class="card">
         <div class="card-header">
             <div class="image">
-                <img src="@pokemonProperties.sprites.other.OfficialArtwork" />
+                <img src="@pokemonProperties.sprites.other.officialArtwork.front_default" />
             </div>
             <div class="description">
                 <h4>@pokemonProperties.name.ToUpper()</h4>
@@ -50,37 +61,65 @@
         <h5># @pokemonProperties.order</h5>
         <span>Type: @pokemonProperties.types.FirstOrDefault().type.name</span>
     </div>
+
 }
+
 else
+
 {
     <h4>Pokemon not found!</h4>
+
 }
 
 
 @code {
+
     string pokemonName = "bulbasaur";
+
     PokemonProperties pokemonProperties = new PokemonProperties();
+
     GenerationResponse generations;
+
     GenerationProperties pokemonByGeneration;
 
+
+
     protected override async Task OnInitializedAsync()
+
     {
+
         generations = await pokemon.GetPokemonGenerations();
+
     }
+
+
 
     private async Task SearchPokemon()
+
     {
+
         pokemonProperties = await pokemon.GetPokemonProperties(pokemonName);
+
     }
+
+
 
     private async Task OnChangedGeneration(ChangeEventArgs e)
+
     {
+
         pokemonByGeneration = await pokemon.GetPokemonsByGenerations(e.Value.ToString());
+
     }
 
+
+
     private async Task OnPokemonSelected(ChangeEventArgs e)
+
     {
+
         pokemonProperties = await pokemon.GetPokemonProperties(e.Value.ToString());
+
     }
 
 }
