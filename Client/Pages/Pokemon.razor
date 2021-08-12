@@ -23,7 +23,7 @@
 
 }
 
-    @if (pokemonByGeneration != null)
+@if (pokemonByGeneration != null)
 {
     <h5>@pokemonByGeneration.main_region.name.ToUpper()</h5>
     <select name="" id="" @onchange="OnPokemonSelected">
@@ -36,12 +36,12 @@
 
 }
 
-    @if (pokemonProperties.name != null)
+@if (pokemonProperties.name != null)
 {
     <div class="card">
         <div class="card-header">
             <div class="image">
-                <img src="@pokemonProperties.sprites.front_default" />
+                <img src="@pokemonProperties.sprites.other.OfficialArtwork" />
             </div>
             <div class="description">
                 <h4>@pokemonProperties.name.ToUpper()</h4>
