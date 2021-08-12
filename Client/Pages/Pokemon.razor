@@ -19,7 +19,7 @@
         @foreach (var item in generations.results)
 
         {
-            <option value="@item.url">@item.name</option>
+            <option value="@item.url">@ToTitleCase(item.name)</option>
 
         }
     </select>
@@ -37,7 +37,7 @@
         @foreach (var item in pokemonByGeneration.pokemon_species)
 
         {
-            <option value="@item.name">@((new CultureInfo("en-US",false).TextInfo).ToTitleCase(item.name))</option>
+            <option value="@item.name">@ToTitleCase(item.name)</option>
 
         }
     </select>
@@ -82,44 +82,34 @@ else
 
     GenerationProperties pokemonByGeneration;
 
+    TextInfo tlc = new CultureInfo("en-US",false).TextInfo;
 
 
     protected override async Task OnInitializedAsync()
-
     {
-
         generations = await pokemon.GetPokemonGenerations();
-
     }
 
-
+    private string ToTitleCase(string text){
+        return tlc.ToTitleCase(text);
+    }
 
     private async Task SearchPokemon()
-
     {
-
         pokemonProperties = await pokemon.GetPokemonProperties(pokemonName);
-
     }
 
 
 
     private async Task OnChangedGeneration(ChangeEventArgs e)
-
     {
-
         pokemonByGeneration = await pokemon.GetPokemonsByGenerations(e.Value.ToString());
-
     }
 
 
 
     private async Task OnPokemonSelected(ChangeEventArgs e)
-
     {
-
         pokemonProperties = await pokemon.GetPokemonProperties(e.Value.ToString());
-
     }
-
 }
