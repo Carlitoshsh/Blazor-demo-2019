@@ -1,22 +1,21 @@
-﻿.new-version-toast {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: baseline;
-    background-color: lightgreen;
-    padding: 5px;
-    margin: 10px 30px 10px 90px;
-    /* box-shadow: var(--elevacion-4); */
-    position: fixed;
-    bottom: 0px;
-    width: 400px;
-    z-index: 2000;
-    color: green;
-    border-radius: 8px;
-}
+﻿
 
-    .new-version-toast > button {
-        background-color: green;
+    .new-version-toast {
+        padding: 10px 0;
+        background: var(--verde-500);
         color: white;
-        white-space: nowrap;
-    }
+      }
+      .new-version-toast p {
+        margin: 0;
+        font-size: 1rem;
+      }
+      
+      #check {
+        color: var(--verde-100);
+        text-decoration: underline;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      #check:hover {
+        color: var(--amarillo-200);
+      }
