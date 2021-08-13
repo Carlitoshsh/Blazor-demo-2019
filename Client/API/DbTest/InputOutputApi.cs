@@ -6,10 +6,10 @@ using System.Collections.Generic;
 
 namespace BlazorTest.Client.API.DbTest
 {
-    public class ProductApi : BaseApiConsume
+    public class InputOutputApi : BaseApiConsume
     {
-        public string controllerName = "Product";
-        public ProductApi(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
+        public string controllerName = "InputOutput";
+        public InputOutputApi(IHttpClientFactory httpClientFactory) : base(httpClientFactory) { }
 
         public async Task<int[]> CreateProduct(Product product) =>
             await ConsumirApi<int[]>($"{controllerName}/CreateProduct", HttpMethod.Post, JsonSerializer.Serialize(product));

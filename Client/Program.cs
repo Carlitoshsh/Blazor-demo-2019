@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using BlazorTest.Client.API;
+using BlazorTest.Client.API.DbTest;
 
 namespace BlazorTest.Client
 {
@@ -34,6 +35,11 @@ namespace BlazorTest.Client
             builder.Services.AddSingleton<BaseApiConsume>();
             builder.Services.AddSingleton<PokemonApi>();
             builder.Services.AddSingleton<SiteApi>();
+            builder.Services.AddSingleton<CategoryApi>();
+            builder.Services.AddSingleton<ProductApi>();
+            builder.Services.AddSingleton<WarehouseApi>();
+            builder.Services.AddSingleton<InputOutputApi>();
+            builder.Services.AddSingleton<StorageApi>();
         }
     }
 }

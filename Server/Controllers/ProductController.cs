@@ -10,11 +10,11 @@ namespace BlazorTest.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CreateProductController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly B_Product _product;
 
-        public CreateProductController(B_Product product)
+        public ProductController(B_Product product)
         {
             _product = product;
         }

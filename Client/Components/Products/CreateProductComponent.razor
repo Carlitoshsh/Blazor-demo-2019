@@ -1,0 +1,95 @@
+﻿@using BlazorTest.Shared.Entities
+@inject ProductApi ProductService
+@inject CategoryApi CategoryService
+@inject NavigationManager NavManager
+
+<h3>Add product...</h3>
+<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Libero itaque repellendus reiciendis sunt explicabo
+    veritatis blanditiis. Reprehenderit ipsa architecto ullam quisquam quasi perferendis, dolore temporibus. Iure
+    distinctio corrupti cum repellat.</p>
+
+<div>
+    <EditForm Model="product">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        @if (IdProduct == null)
+
+        {
+            <label>ID</label>
+            <InputText @bind-Value="product.Id"></InputText>
+            <ValidationMessage For="@(() => product.Id)" />
+
+        }
+
+        else
+
+        {
+            <label>ID: @IdProduct</label>
+
+        }
+        <label for="nombre">Name</label>
+        <InputText id="nombre" @bind-Value="product.Name"></InputText>
+
+        <label>Email</label>
+        <InputText @bind-Value="product.Email"></InputText>
+        <ValidationMessage For="@(() => product.Email)" />
+
+        <label>Description</label>
+        <InputText @bind-Value="product.Description"></InputText>
+
+        <label>Category</label>
+        <InputSelect @bind-Value="product.CategoryId">
+            <option disabled>Select an option...</option>
+            @foreach (Category category in categories)
+
+            {
+                <option value="@category.Id">@category.Name</option>
+
+            }
+        </InputSelect>
+        <br />
+
+        @if (IdProduct == null)
+
+        {
+            <button @onclick="SaveProduct">Add product</button>
+
+        }
+
+        else
+
+        {
+            <button @onclick="UpdateProduct">Update product</button>
+
+        }
+
+    </EditForm>
+</div>
+
+
+@code {
+    [Parameter]
+    public string IdProduct { get; set; }
+    Product product = new Product();
+    List<Category> categories = new List<Category>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        categories = await CategoryService.CategoryList();
+    }
+
+    private async Task SaveProduct()
+
+    {
+        await ProductService.CreateProduct(product);
+        NavManager.NavigateTo("fetchdata");
+    }
+
+    private async Task UpdateProduct()
+
+    {
+        product.Id = IdProduct;
+        await ProductService.UpdateProduct(product);
+        NavManager.NavigateTo("fetchdata");
+    }
+}

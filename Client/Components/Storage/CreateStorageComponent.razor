@@ -1,0 +1,56 @@
+@using BlazorTest.Shared.Entities
+@inject ProductApi ProductService
+@inject WarehouseApi WarehouseService
+@inject StorageApi StorageService
+
+<EditForm Model="storage">
+    <div>
+        <label for="">Bodega</label>
+        <InputSelect @bind-Value="storage.Id">
+            <option disabled>Seleccione una opcion</option>
+            @foreach (var item in warehouses)
+            {
+                <option value="@item.Id">@item.Name</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label for="">Bodega</label>
+        <InputSelect @bind-Value="storage.ProductId">
+            <option disabled>Seleccione una opcion</option>
+            @foreach (var product in products)
+            {
+                <option value="@product.Id">@product.Name</option>
+            }
+        </InputSelect>
+        <button @onclick="SaveStorage">Save Storage</button>
+
+    </div>
+</EditForm>
+
+<p>@message</p>
+
+@code {
+    Storage storage = new Storage();
+    List<Warehouse> warehouses = new List<Warehouse>();
+    List<Product> products = new List<Product>();
+
+    string message;
+
+    protected override async Task OnInitializedAsync()
+    {
+        warehouses = await WarehouseService.WarehouseList();
+        products = await ProductService.ProductList();
+    }
+
+    private async Task SaveStorage(){
+        storage.LastUpdate = DateTime.Now;
+        if(!(await StorageService.IsProductInWarehouse(storage.Id))){
+            storage.Id = $"{storage.Id}-{storage.ProductId}";
+            await StorageService.CreateStorage(storage);
+            message = "Producto almacenado";
+        } else {
+            message = "Producto ya registrado";
+        }
+    }
+}

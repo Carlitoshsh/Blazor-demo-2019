@@ -44,6 +44,7 @@ namespace BlazorTest.Client.Helpers
                     }
                    );
                 }
+                Console.WriteLine("👮‍♀️👮‍♀️👮‍♀️" + Respuesta);
                 client.Dispose();
             }
             catch (Exception e)
