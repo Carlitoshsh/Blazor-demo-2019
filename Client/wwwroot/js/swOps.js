@@ -15,7 +15,7 @@
   newVersionToast.appendChild(label);
   newVersionToast.appendChild(updateButton);
 
-  document.getElementsByTagName("app")[0].appendChild(newVersionToast);
+  document.getElementsByTagName("app")[0].prepend(newVersionToast);
 }
 
 // check if the browser supports serviceWorker at all
