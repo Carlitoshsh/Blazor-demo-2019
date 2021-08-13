@@ -1,6 +1,6 @@
 ﻿function invokeServiceWorkerUpdateFlow(registration) {
   let label = document.createElement("span");
-  label.textContent = "Hay una nueva version";
+  label.textContent = "Hay una nueva version disponible. ";
 
   let updateButton = document.createElement("a");
   updateButton.id = "check";
@@ -10,10 +10,14 @@
     registration.waiting.postMessage("SKIP_WAITING");
   });
 
+  let wrapper = document.createElement("div");
+  wrapper.className = "wrapper";
+  wrapper.appendChild(label);
+  wrapper.appendChild(updateButton);
+
   let newVersionToast = document.createElement("div");
   newVersionToast.className = "new-version-toast";
-  newVersionToast.appendChild(label);
-  newVersionToast.appendChild(updateButton);
+  newVersionToast.appendChild(wrapper);
 
   document.getElementsByTagName("app")[0].prepend(newVersionToast);
 }
