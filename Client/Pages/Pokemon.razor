@@ -2,7 +2,7 @@
 @using System.Globalization
 @inject PokemonApi pokemon
 
-<h3>Testing pokemon API...</h3>
+<h3>Pokemon API tester</h3>
 
 <label for="name">Write a Pokemon name...</label>
 <input type="text" name="name" @bind-value="@pokemonName" />
@@ -82,7 +82,7 @@ else
 
     GenerationProperties pokemonByGeneration;
 
-    TextInfo tlc = new CultureInfo("en-US",false).TextInfo;
+    TextInfo tlc = new CultureInfo("en-US", false).TextInfo;
 
 
     protected override async Task OnInitializedAsync()
@@ -90,7 +90,8 @@ else
         generations = await pokemon.GetPokemonGenerations();
     }
 
-    private string ToTitleCase(string text){
+    private string ToTitleCase(string text)
+    {
         return tlc.ToTitleCase(text);
     }
 
