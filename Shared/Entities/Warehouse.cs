@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorTest.Server.Entities
+namespace BlazorTest.Shared.Entities
 {
     public class Warehouse
     {

@@ -19,12 +19,21 @@ namespace BlazorTest.Client
             builder.RootComponents.Add<App>("app");
 
             // Singletons
-            builder.Services.AddSingleton<BaseApiConsume>();
-            builder.Services.AddSingleton<PokemonApi>();
+            AddServices(builder);
 
-            builder.Services.AddHttpClient("configured-inner-handler");
+            builder.Services.AddHttpClient("configured-inner-handler", c =>
+            {
+                c.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress);
+            });
 
             await builder.Build().RunAsync();
+        }
+
+        private static void AddServices(WebAssemblyHostBuilder builder)
+        {
+            builder.Services.AddSingleton<BaseApiConsume>();
+            builder.Services.AddSingleton<PokemonApi>();
+            builder.Services.AddSingleton<SiteApi>();
         }
     }
 }

@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BlazorTest.Server.Entities.Helpers;
+using BlazorTest.Shared.Entities.Helpers;
 
-namespace BlazorTest.Server.Helpers
+namespace BlazorTest.Helpers
 {
 
     public class ConnectWithService

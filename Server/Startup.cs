@@ -6,13 +6,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Linq;
-using BlazorTest.Server.Business;
-using BlazorTest.Server.Helpers;
+using BlazorTest.Business;
+using BlazorTest.Helpers;
 using System.Security.Authentication;
 using System.Net.Http;
 using System;
 
-namespace BlazorTest.Server
+namespace BlazorTest
 {
     public class Startup
     {

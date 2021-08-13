@@ -1,7 +1,7 @@
-using BlazorTest.Server.DataAccess;
+using BlazorTest.DataAccess;
 using System;
 
-namespace BlazorTest.Server.Business
+namespace BlazorTest.Business
 {
     public abstract class DefaultConnection : ConexionBase
     {

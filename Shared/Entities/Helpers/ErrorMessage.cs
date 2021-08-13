@@ -1,4 +1,4 @@
-namespace BlazorTest.Shared.Helpers
+namespace BlazorTest.Shared.Entities.Helpers
 {
     public class ErrorMessage
     {

@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorTest.Server.Entities
+namespace BlazorTest.Shared.Entities
 {
     public class Storage
     {
         [Key]
         [StringLength(50)]
         public string Id { get; set; }
-        
+
         [Required]
         public DateTime LastUpdate { get; set; }
 

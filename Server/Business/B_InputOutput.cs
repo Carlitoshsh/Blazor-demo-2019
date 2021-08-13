@@ -1,10 +1,10 @@
-﻿using BlazorTest.Server.Entities;
+﻿using BlazorTest.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorTest.Server.Business
+namespace BlazorTest.Business
 {
     public class B_InputOutput : DefaultConnection
     {

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using BlazorTest.Shared.Helpers;
+using BlazorTest.Shared.Entities.Helpers;
 
 namespace BlazorTest.Client.Helpers
 {
@@ -55,7 +55,7 @@ namespace BlazorTest.Client.Helpers
                 //     Excepcion = e.Message,
                 //     InnerException = e.InnerException.ToString()
                 // });
-                Console.WriteLine("This is just a test "+e);
+                Console.WriteLine("This is just a test " + e);
             }
         }
 

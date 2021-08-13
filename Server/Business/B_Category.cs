@@ -1,12 +1,12 @@
-﻿using BlazorTest.Server.Entities;
+﻿using BlazorTest.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorTest.Server.Business
+namespace BlazorTest.Business
 {
-    public class B_Category: DefaultConnection
+    public class B_Category : DefaultConnection
     {
         public async Task<int> CreateCategory(Category category)
         {
@@ -21,7 +21,8 @@ namespace BlazorTest.Server.Business
             return affectedRows.Count;
         }
 
-        public async Task UpdateCategory(Category category) {
+        public async Task UpdateCategory(Category category)
+        {
             await Query<Category>("Update Category set Name = @Name where Id = @Id;",
                    new
                    {
