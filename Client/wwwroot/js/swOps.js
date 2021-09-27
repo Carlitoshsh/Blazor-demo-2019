@@ -68,20 +68,16 @@ if ("serviceWorker" in navigator) {
 }
 
 // new messagec
-addBroadcastMessage();
-
-function addBroadcastMessage() {
-  const bc = new BroadcastChannel("sw-channel");
-  bc.onmessage = function (message) {
-    if (message && message.data == "downloading-files") {
-      myMessage("Archivos estan siendo descargados...");
-    } else if (message && message.data == "all-downloaded") {
-      myMessage("Archivos fueron descargados!");
-    } else if (message && message.data == "error-cache-sw") {
-      myMessage("Error en la descarga!");
-    }
-  };
-}
+const bc = new BroadcastChannel("sw-channel");
+bc.onmessage = function (message) {
+  if (message && message.data == "downloading-files") {
+    myMessage("Archivos estan siendo descargados...");
+  } else if (message && message.data == "all-downloaded") {
+    myMessage("Archivos fueron descargados!");
+  } else if (message && message.data == "error-cache-sw") {
+    myMessage("Error en la descarga!");
+  }
+};
 
 function myMessage(myMessageString) {
   console.log("❤", myMessageString);
