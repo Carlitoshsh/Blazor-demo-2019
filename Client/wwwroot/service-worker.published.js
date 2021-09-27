@@ -38,6 +38,9 @@ self.addEventListener("message", (event) => {
 async function onInstall(event) {
   console.info("Service worker: Install");
 
+  const bc = new BroadcastChannel("sw-channel");
+  bc.postMessage("downloading-files")
+
   // Fetch and cache all matching items from the assets manifest
   const assetsRequests = self.assetsManifest.assets
     .filter((asset) =>
@@ -51,11 +54,13 @@ async function onInstall(event) {
   await caches
     .open(cacheName)
     .then((cache) => {
-        cache.addAll(assetsRequests)
-        console.log("All caches where downloaded!");
+      cache.addAll(assetsRequests);
+      bc.postMessage("all-downloaded");
     })
     .catch(() => {
       console.log("Error downloaded all caches!");
+      // Send a message to the client.
+      bc.postMessage("error-cache-sw");
     });
 }
 

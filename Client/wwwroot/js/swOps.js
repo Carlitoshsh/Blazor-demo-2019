@@ -64,5 +64,25 @@ if ("serviceWorker" in navigator) {
         refreshing = true;
       }
     });
+
+    // new messagec
+    addBroadcastMessage();
   });
+}
+function addBroadcastMessage() {
+  const bc = new BroadcastChannel("sw-channel");
+  bc.onmessage = function (message) {
+    if (message && message.data == "downloading-files") {
+      myMessage("Archivos estan siendo descargados...");
+    } else if (message && message.data == "all-downloaded") {
+      myMessage("Archivos fueron descargados!");
+    } else if (message && message.data == "error-cache-sw") {
+      myMessage("Error en la descarga!");
+    }
+  };
+}
+function myMessage(myMessageString) {
+  let label = document.createElement("span");
+  label.textContent = myMessageString;
+  document.getElementsByTagName("app")[0].prepend(label);
 }
