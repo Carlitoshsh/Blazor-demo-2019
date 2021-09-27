@@ -82,6 +82,7 @@ function addBroadcastMessage() {
   };
 }
 function myMessage(myMessageString) {
+  console.log("❤", myMessageString);
   let label = document.createElement("span");
   label.textContent = myMessageString;
   document.getElementsByTagName("app")[0].prepend(label);
