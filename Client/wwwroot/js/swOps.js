@@ -71,11 +71,11 @@ if ("serviceWorker" in navigator) {
 const bc = new BroadcastChannel("sw-channel");
 bc.onmessage = function (message) {
   if (message && message.data == "downloading-files") {
-    myMessage("Archivos estan siendo descargados...");
+    myMessage(" Archivos estan siendo descargados...");
   } else if (message && message.data == "all-downloaded") {
-    myMessage("Archivos fueron descargados!");
+    myMessage(" Archivos fueron descargados!");
   } else if (message && message.data == "error-cache-sw") {
-    myMessage("Error en la descarga!");
+    myMessage(" Error en la descarga!");
   }
 };
 
