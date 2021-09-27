@@ -64,11 +64,12 @@ if ("serviceWorker" in navigator) {
         refreshing = true;
       }
     });
-
-    // new messagec
-    addBroadcastMessage();
   });
 }
+
+// new messagec
+addBroadcastMessage();
+
 function addBroadcastMessage() {
   const bc = new BroadcastChannel("sw-channel");
   bc.onmessage = function (message) {
@@ -81,6 +82,7 @@ function addBroadcastMessage() {
     }
   };
 }
+
 function myMessage(myMessageString) {
   console.log("❤", myMessageString);
   let label = document.createElement("span");
